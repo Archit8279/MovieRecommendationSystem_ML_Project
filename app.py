@@ -36,15 +36,14 @@ movie_options = ["Select a Movie"] + list(movies_titles)
 
 url = "https://drive.google.com/uc?export=download&id=1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35"
 
-r = requests.get(url, allow_redirects=True)
-print("Content-Type:", r.headers.get("Content-Type"))
-print("First 200 bytes:", r.content[:200])
+data = b""
+for i in range(9):
+    with open(f"similarity_part{i}.bin", "rb") as f:
+        data += f.read()
 
-with open("similarity_compressed.pkl.gz", "wb") as f:
-    f.write(r.content)
+import pickle
+similarity = pickle.loads(data)
 
-with gzip.open("similarity_compressed.pkl.gz", "rb") as f:
-    similarity = pickle.load(f)
 
 st.title("Movie Recommender System")
 selected_movie_name = st.selectbox(
