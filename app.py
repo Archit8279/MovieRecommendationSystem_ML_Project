@@ -33,9 +33,14 @@ movies_list = pickle.load(open("Movies.pkl","rb"))
 movies_titles = movies_list['title'].values
 movie_options = ["Select a Movie"] + list(movies_titles)
 
-#similarity = pickle.load(open("similarity.pkl","rb"))
 
-with gzip.open("similarity_compressed.pkl.gz", "rb") as f:
+url = "https://drive.google.com/file/d/1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35/view?usp=sharing"
+
+r = requests.get(url)
+with open("similarity.pkl.gz", "wb") as f:
+    f.write(r.content)
+
+with gzip.open("similarity.pkl.gz", "rb") as f:
     similarity = pickle.load(f)
 
 st.title("Movie Recommender System")
