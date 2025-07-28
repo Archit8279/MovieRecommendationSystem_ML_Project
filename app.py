@@ -34,7 +34,7 @@ movies_titles = movies_list['title'].values
 movie_options = ["Select a Movie"] + list(movies_titles)
 
 
-url = "https://drive.google.com/file/d/1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35/view?usp=sharing"
+url = "https://drive.google.com/uc?export=download&id=1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35"
 
 r = requests.get(url)
 with open("similarity_compressed.pkl.gz", "wb") as f:
