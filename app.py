@@ -33,8 +33,9 @@ movies_list = pickle.load(open("Movies.pkl","rb"))
 movies_titles = movies_list['title'].values
 movie_options = ["Select a Movie"] + list(movies_titles)
 
+num_parts = 9
 parts = []
-for i in range(9):
+for i in range(num_parts):
     with open(f"similarity_part{i}.bin", "rb") as f:
         parts.append(f.read())
 data = b"".join(parts)
