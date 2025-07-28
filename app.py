@@ -1,5 +1,5 @@
 import streamlit as st
-import pickle
+import pickle, gzip
 import requests
 
 OMDB_API_KEY = "d8ca6191"
@@ -33,7 +33,10 @@ movies_list = pickle.load(open("Movies.pkl","rb"))
 movies_titles = movies_list['title'].values
 movie_options = ["Select a Movie"] + list(movies_titles)
 
-similarity = pickle.load(open("similarity.pkl","rb"))
+#similarity = pickle.load(open("similarity.pkl","rb"))
+
+with gzip.open("similarity_compressed.pkl.gz", "rb") as f:
+    similarity = pickle.load(f)
 
 st.title("Movie Recommender System")
 selected_movie_name = st.selectbox(
