@@ -36,7 +36,10 @@ movie_options = ["Select a Movie"] + list(movies_titles)
 
 url = "https://drive.google.com/uc?export=download&id=1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35"
 
-r = requests.get(url)
+r = requests.get(url, allow_redirects=True)
+print("Content-Type:", r.headers.get("Content-Type"))
+print("First 200 bytes:", r.content[:200])
+
 with open("similarity_compressed.pkl.gz", "wb") as f:
     f.write(r.content)
 
