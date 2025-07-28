@@ -33,11 +33,8 @@ movies_list = pickle.load(open("Movies.pkl","rb"))
 movies_titles = movies_list['title'].values
 movie_options = ["Select a Movie"] + list(movies_titles)
 
-
-url = "https://drive.google.com/uc?export=download&id=1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35"
-
 parts = []
-for i in range(num_parts):
+for i in range(9):
     with open(f"similarity_part{i}.bin", "rb") as f:
         parts.append(f.read())
 data = b"".join(parts)
