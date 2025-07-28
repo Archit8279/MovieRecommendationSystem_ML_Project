@@ -36,13 +36,14 @@ movie_options = ["Select a Movie"] + list(movies_titles)
 
 url = "https://drive.google.com/uc?export=download&id=1t4q1DBNbyQvK-rOxGRw-4m4XmT3fRB35"
 
-data = b""
-for i in range(9):
+parts = []
+for i in range(num_parts):
     with open(f"similarity_part{i}.bin", "rb") as f:
-        data += f.read()
+        parts.append(f.read())
+data = b"".join(parts)
 
-import pickle
-similarity = pickle.loads(data)
+similarity = pickle.loads(data)  # should work if chunks are intact
+
 
 
 st.title("Movie Recommender System")
